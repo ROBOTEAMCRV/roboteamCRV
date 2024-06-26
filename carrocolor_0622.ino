@@ -1,68 +1,51 @@
-#include <Adafruit_TCS34725.h>  // Biblioteca para el sensor de color y lo inicialisamos
+#include <Adafruit_TCS34725.h>
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS,TCS34725_GAIN_4X);
+
 #include <NewPing.h> // Biblioteca para el sensor ultrasónico
 #include <Servo.h> // Biblioteca para el servo
 Servo myservo; // Crea un objeto servo para controlar el servo
-//Definimos pines para manejar motor DC de traccion
+
+
 #define ENA 5
 #define IN1 8
 #define IN2 7
-//Definimos pines para ultrasonido
-#define Echo A14
-#define Trig A15
-int middleDistance = 0;
-int p=3, i=1;
 
-void forward(){ //encendemos el motor hacia adelante
-  digitalWrite(ENA,HIGH);
-  digitalWrite(IN1,HIGH);
-  digitalWrite(IN2,LOW);
-  Serial.print("Fw- "); //mostramos proceso y distancia del ultrasonido
+int Echo = A14;
+int Trig = A15;
+int rightDistance = 0, leftDistance = 0, middleDistance = 0;
+
+
+
+void forward(){
+
+  digitalWrite(ENA,HIGH); //enable L298n A channel
+  digitalWrite(IN1,HIGH); //set IN1 hight level
+  digitalWrite(IN2,LOW);  //set IN2 low level
+  Serial.print("Forward- ");//send message to serial monitor
   Serial.println(middleDistance);
-
-
-
 }
 
-void adelante(){
-  if(i%20 == 0){
-    myservo.write(60); //centro
-    Serial.println("-----------acomodo-----------");
-    }
-  else if(0){
-    myservo.write(60); //centro
-    Serial.println("-----------65-----------");
-    }
-    else{
-    myservo.write(97); //centro
-    }
-
-  delay(50);
-  i++;
-  }
-
-void back(){ //encendemos el motor hacia atras
+void back(){
   digitalWrite(ENA,HIGH);
   digitalWrite(IN1,LOW);
   digitalWrite(IN2,HIGH);
-  Serial.print("B ");
-}
+  Serial.print("B ");}
+
 
 void left(){
- myservo.write (50);
- Serial.print("L ");
+ myservo.write (150);
+ forward();
+ Serial.println("left");
 }
 
-void right(){
- myservo.write (130);
- Serial.print("R ");
-}
+
 
 void stop(){
   digitalWrite(ENA,LOW);
-  digitalWrite(IN1,LOW);
-  digitalWrite(IN2,LOW);
+  digitalWrite(IN1,LOW); //set IN1 hight level
+  digitalWrite(IN2,LOW);  //set IN2 low level
 }
+
 
 int getDistance() {
     digitalWrite(Trig, LOW);
@@ -73,175 +56,181 @@ int getDistance() {
     return (int)pulseIn(Echo, HIGH) / 58;
 }
 
-int color(){
-  float red,green,blue;
-  tcs.getRGB(&red,&green,&blue);
-  int R = int(red);
-  int G = int(green);
-  int B = int(blue);
-  
-
-  Serial.print("R: ");Serial.print(R); //imprimimos que recibimos del sensor
-  Serial.print("   G: ");Serial.print(G);
-  Serial.print("   B: ");Serial.println(B);
-
-  if ((R > 110) && (R > G) && (R > B)){
-    Serial.println("-----------red -----------");
-    return(1);
-  } else if ((G > 100) && (G > R) && (G > B)){
-    Serial.println("-----------verde -----------");
-    return(2);
-  } else if ((120 > R) && (120 > G ) && (120 > B)){
-    Serial.println("-----------negro -----------");
-    return(3);
-  } else if ((R & B > G) && (R & B > 120)) {//estacionar
-    Serial.println("-----------MAGENTA-----------");
-    return(4);
- }
-}
-
 
 void setup() {
-  Serial.begin(9600); //open serial and set the baudrate
+  Serial.begin(9450);//open serial and set the baudrate
   myservo.attach(3);
-  pinMode(IN1,OUTPUT); //before useing io pin, pin mode must be set first
+  pinMode(IN1,OUTPUT);//before useing io pin, pin mode must be set first
   pinMode(IN2,OUTPUT);
   pinMode(ENA,OUTPUT);
   tcs.begin();
   //pin sentido
   pinMode(40, OUTPUT);
   pinMode(41, INPUT);
-  digitalWrite(40, HIGH);
+}
+/*int rojo = pulseIn(salidaTCS, LOW); // obtiene duracion de pulso de salida del sensor
+int verde = pulseIn(salidaTCS, LOW);  // obtiene duracion de pulso de salida del senso
+int azul = pulseIn(salidaTCS, LOW); // obtiene duracion de pulso de salida del sensor
+*/
+void loop(){
+myservo.write(104);
+forward();
+middleDistance = getDistance();
+
+if (middleDistance <= 40 & middleDistance > 1) {
+//back(); //freno
+//delay(104);
+stop();
+delay(1040);
+
+
+
+  //color
+  float red,green,blue;
+  tcs.getRGB(&red,&green,&blue);
+  int R = int(red);
+  int G = int(green);
+  int B = int(blue);
+  String color = "";
+
+Serial.print("R: ");Serial.print(int(red));
+Serial.print("   G: ");Serial.print(int(green));
+Serial.print("   B: ");Serial.print(int(blue));
+Serial.println();
+
+ if ((R > 150) && (R > G) && (R > B)){
+  color = "Red";
+  Serial.println("-------------red -----------");
+ 
+  myservo.write (150);
+ forward();
+ Serial.println("left");
+ 
+  delay(500);
+  back();//freno
+  delay(104);
+
+   myservo.write (55);
+   back();; //enderezar
+  delay(500);
+  stop();
+  back();//freno
+  delay(500);
+
+    myservo.write (55);
+    back();//regresar al medio
+  delay(500);
+  stop();
+  back();//freno
+  delay(104);
+
+  myservo.write (150);
+ forward();
+ Serial.println("left");
+  delay(500);
+  back();//freno
+  delay(104);
+  myservo.write(80);
+ }
+
+         
+ else if ((G > 150) && (G > 150) && (G > B)){
+  color = "Green";
+  Serial.println("-------------verde -----------");
+   myservo.write (55);
+   forward();
+  delay(500);
+  stop();
+  back();//freno
+  delay(104);
+
+
+  myservo.write (150);
+ forward();
+ Serial.println("left");
+ 
+  delay(500);
+  stop();
+  back();
+  delay(500);
+  forward();
+
+  myservo.write (150);
+ forward();
+ Serial.println("left");
+ 
+  delay(500);
+  back();//freno
+  delay(104);
+
+   myservo.write (55);
+   back();//enderezar
+  delay(500);
+  stop();
+  back();//freno
+  delay(104);
+myservo.write(104);
 }
 
-void loop(){
-  if(p!=0){ //inicializamos direccion
-    left();
-    delay(100);
-    myservo.write(97);
-    p=0;
-    Serial.println("-----------inicio-----------");
-    Serial.println(digitalRead(41));
-  }
-
-  forward();
-  adelante();
-  middleDistance = getDistance();
-
- if (middleDistance <= 40 & middleDistance > 1) {
-
-  stop();
-  delay(1000);
-//color();
-switch(color()){
-//switch(3){
-  case 1:
-    //rojo - obstaculo
-
-    back();
-    delay(200);
-        
-    left();
-    forward();
-    delay(200);
-
-    right();
-    forward();
-    delay(200);
-
-    myservo.write(70); //centro
-    forward();
-    delay(500);
-
-    right();
-    forward();
-    delay(200);
-
-    left();
-    forward();
-    delay(200);
-
-
-  break;
-  case 2:
-    //verde - obstaculo
+else if ((300 > R) && (300 > G ) && (300 > B)){
+    color = "Black";
+    Serial.println("-------------negro -----------");
+    digitalRead(41);
+    Serial.println(digitalRead(41));//0 (conectado) = horario
     
-    back();
-    delay(200);
-
-    right();
+    if (digitalRead(41)){
+    stop();
+     myservo.write (55);
+     back();
+    delay(500);
+    stop();
+ 
+    myservo.write (150);
+ forward();
+ Serial.println("left");
+ 
+    delay(500);
+    myservo.write(80);
     forward();
-    delay(200);
-
-    left();
-    forward();
-    delay(200);
-
-    myservo.write(97); //centro
+    }
+    
+     myservo.write (150);  
+     back();
+    delay(500);
+    stop();
+     myservo.write (55);  
     forward();
     delay(500);
-
-    left();
+    myservo.write(104);
     forward();
-    delay(200);
-
-    right();
-    forward();
-    delay(200);
-
-    myservo.write (88);
-  break;
-  case 3:
-    //negro - pared
-    //41 = 0 (conectado) = horario
-    if (digitalRead(41)){
-
-      right();
-      back();
-      delay(500);//tiempo maniobra atras
-      stop();
-
-      left();
-      forward();
-      delay(500);//tiempo maniobra adelante
-
-      myservo.write(97); //centro
-      forward();
-
-    } else{
-
-      left();
-      back();
-      delay(500);//tiempo maniobra atras
-      stop();
-
-      right();
-      forward();
-      delay(500);//tiempo maniobra adelante
-
-      myservo.write(60); //centro
-
+    
+   Serial.println("pared");
     }
 
-  break;
-  case 4:
-    //magenta - estacionarse
-    back();
-    delay(700);
-    
-    myservo.write (125);
-    forward();
-    delay(2000);
-    
-    myservo.write (75);
-    back();
+   
+//estacionar
+ else if ((R & B > G) && (R & B > 104)) {
+  color = "Magenta";
+  Serial.println("MAGENTA");
+  back();
+  delay(800);
   
-    delay(2000);
-    stop();
-    forward();
-    delay(500);
-  break;
-}//switch
+   myservo.write (150);
+   forward();
+  delay(2000);
+  
+ myservo.write (80);
+ back();
 
-}//distancia
-}//loop
+ 
+  delay(2000);
+  stop();
+  forward();
+  delay(500);
+ }
+ 
+
+}
+}
+ 
+}
