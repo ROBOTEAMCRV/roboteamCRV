@@ -1,0 +1,315 @@
+//This is the code for the vehicle
+
+
+
+
+#include <NewPing.h> // Biblioteca para el sensor ultrasónico
+#include <Servo.h> // Biblioteca para el servo
+Servo myservo; // Crea un objeto servo para controlar el servo
+
+#include "HUSKYLENS.h"
+#include "SoftwareSerial.h"
+
+int ID0 = 0; //not learned results. Grey result on HUSKYLENS screen
+int ID1 = 1; //first learned results. colored result on HUSKYLENS screen
+int ID2 = 2; //second learned results. colored result on HUSKYLENS screen
+
+HUSKYLENS huskylens;
+SoftwareSerial mySerial(10, 12); // RX, TX
+//HUSKYLENS green line >> Pin 10; blue line >> Pin 12
+void printResult(HUSKYLENSResult result);
+
+#define ENA 5
+#define IN1 8
+#define IN2 7
+
+int Echo = A1;
+int Trig = A2;
+int rightDistance = 0, leftDistance = 0, middleDistance = 0;
+
+
+
+void forward(){
+
+  digitalWrite(ENA,HIGH); //enable L298n A channel
+  digitalWrite(IN1,HIGH); //set IN1 hight level
+  digitalWrite(IN2,LOW);  //set IN2 low level
+  Serial.print("Forward- ");//send message to serial monitor
+  Serial.println(middleDistance);
+}
+
+void back(){
+  digitalWrite(ENA,HIGH);
+  digitalWrite(IN1,LOW);
+  digitalWrite(IN2,HIGH);
+  Serial.print("B ");}
+
+
+void left(){
+ myservo.write (70);
+ forward();
+ Serial.println("left");
+}
+
+
+
+void stop(){
+  digitalWrite(ENA,LOW);
+  digitalWrite(IN1,LOW); //set IN1 hight level
+  digitalWrite(IN2,LOW);  //set IN2 low level
+}
+
+
+int getDistance() {
+    digitalWrite(Trig, LOW);
+    delayMicroseconds(2);
+    digitalWrite(Trig, HIGH);
+    delayMicroseconds(01);
+    digitalWrite(Trig, LOW);
+    return (int)pulseIn(Echo, HIGH) / 58;
+}
+
+
+void setup() {
+  Serial.begin(115200);
+    mySerial.begin(9600);
+    while (!huskylens.begin(mySerial))
+    {
+        Serial.println(F("Begin failed!"));
+        Serial.println(F("1.Please recheck the \"Protocol Type\" in HUSKYLENS (General Settings>>Protocol Type>>Serial 9600)"));
+        Serial.println(F("2.Please recheck the connection."));
+        delay(100);
+    }
+  myservo.attach(3);
+  pinMode(IN1,OUTPUT);//before useing io pin, pin mode must be set first
+  pinMode(IN2,OUTPUT);
+  pinMode(ENA,OUTPUT);
+  //pin sentido
+  pinMode(41, INPUT);
+  pinMode(40, OUTPUT);
+  digitalWrite (40, HIGH);
+}
+int pepe = 0;
+int velocidad = 0;
+
+void loop(){
+
+if (pepe==0){
+  myservo.write(128);
+  stop();
+  delay(1000);
+  pepe++;
+ 
+}
+
+#define carSpeed (velocidad)
+ velocidad++;
+ analogWrite(ENA, carSpeed);
+Serial.println (velocidad);
+
+forward();
+
+if (pepe>15){
+  delay(500);
+  stop();
+  delay(1000000000);
+}
+
+middleDistance = getDistance();
+if (middleDistance <= 50 & middleDistance > 1){
+Serial.println(middleDistance);
+  pepe++;
+ if (huskylens.request())                    //request all blocks and arrows from HUSKYLENS
+    // if (huskylens.requestBlocks())           //request only blocks from HUSKYLENS
+    // if (huskylens.requestArrows())           //request only arrows from HUSKYLENS
+    // if (huskylens.requestLearned())          //request blocks and arrows tangged ID != 0 from HUSKYLENS
+    // if (huskylens.requestBlocksLearned())    //request blocks tangged ID != ID0 from HUSKYLENS
+    // if (huskylens.requestArrowsLearned())    //request arrows tangged ID != ID0 from HUSKYLENS
+    // if (huskylens.request(ID1))              //request blocks and arrows tangged ID == ID1 from HUSKYLENS
+    // if (huskylens.requestBlocks(ID1))        //request blocks tangged ID == ID1 from HUSKYLENS
+    // if (huskylens.requestArrows(ID1))        //request arrows tangged ID == ID1 from HUSKYLENS
+    // if (huskylens.request(ID2))              //request blocks and arrows tangged ID == ID2 from HUSKYLENS
+    // if (huskylens.requestBlocks(ID2))        //request blocks tangged ID == ID2 from HUSKYLENS
+    // if (huskylens.requestArrows(ID2))        //request arrows tangged ID == ID2 from HUSKYLENS
+    {
+   Serial.println("###################################");
+        Serial.println(String()+F("Count of learned IDs:")+huskylens.countLearnedIDs());//The count of (faces, colors, objects or lines) you have learned on HUSKYLENS.
+        Serial.println(String()+F("frame number:")+huskylens.frameNumber());//The number of frame HUSKYLENS have processed.
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all blocks and arrows. Count:")+huskylens.count());
+        for (int i = 0; i < huskylens.count(); i++)
+        {
+            HUSKYLENSResult result = huskylens.get(i);
+            printResult(result);
+        }
+
+      /*  Serial.println("#######");
+        Serial.println(String()+F("Get all blocks. Count:")+huskylens.countBlocks());
+        for (int i = 0; i < huskylens.countBlocks(); i++)
+        {
+            HUSKYLENSResult result = huskylens.getBlock(i);
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all arrows. Count:")+huskylens.countArrows());
+        for (int i = 0; i < huskylens.countArrows(); i++)
+        {
+            HUSKYLENSResult result = huskylens.getArrow(i);
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all blocks and arrows tagged ID0. Count:")+huskylens.count(ID0));
+        for (int i = 0; i < huskylens.count(ID0); i++)
+        {
+            HUSKYLENSResult result = huskylens.get(ID0, i);
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all blocks with learn ID equals ID0. Count:")+huskylens.countBlocks(ID0));
+        for (int i = 0; i < huskylens.countBlocks(ID0); i++)
+        {
+            HUSKYLENSResult result = huskylens.getBlock(ID0, i);
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all arrows tagged ID0. Count:")+huskylens.countArrows(ID0));
+        for (int i = 0; i < huskylens.countArrows(ID0); i++)
+        {
+            HUSKYLENSResult result = huskylens.getArrow(ID0, i);  
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all blocks and arrows tagged ID1. Count:")+huskylens.count(ID1));
+        for (int i = 0; i < huskylens.count(ID1); i++)
+        {
+            HUSKYLENSResult result = huskylens.get(ID1, i);
+            printResult(result);
+        }
+
+        Serial.println("#######");
+        Serial.println(String()+F("Get all blocks and arrows tagged ID2. Count:")+huskylens.count(ID2));
+        for (int i = 0; i < huskylens.count(ID2); i++)
+        {
+            HUSKYLENSResult result = huskylens.get(ID2, i);
+            printResult(result);
+        }*/
+    }
+    else{
+        Serial.println("Fail to request objects from Huskylens!");
+    }
+    delay(1000);
+
+
+
+ 
+    }
+
+delay(300);
+
+/*estacionar
+ else if ((R & B > G) && (R & B > 90)) {
+  color = "Magenta";
+  Serial.println("MAGENTA");
+  back();
+  delay(700);
+  
+   myservo.write (70);
+   forward();
+  delay(1000);
+  
+ myservo.write (52);
+ back();
+
+ 
+  delay(1000);
+  stop();
+  forward();
+  delay(500);
+ }
+ */
+
+}
+
+void printResult(HUSKYLENSResult result){
+    if (result.command == COMMAND_RETURN_BLOCK){//result is a block
+        Serial.println(String()+F("Block:xCenter=")+result.xCenter+F(",yCenter=")+result.yCenter+F(",width=")+result.width+F(",height=")+result.height+F(",ID=")+result.ID);
+    Serial.println(result.ID);
+    }
+    else if (result.command == COMMAND_RETURN_ARROW){//result is an arrow
+        Serial.println(String()+F("Arrow:xOrigin=")+result.xOrigin+F(",yOrigin=")+result.yOrigin+F(",xTarget=")+result.xTarget+F(",yTarget=")+result.yTarget+F(",ID=")+result.ID);
+    }
+    
+  if (result.ID == 1 && result.height>130) {
+     Serial.println("-------------red -----------");
+
+  myservo.write (101);
+  delay(100);
+ forward();
+ Serial.println("left");
+ 
+  delay(800);
+
+    myservo.write (150);
+  delay(100);
+ forward();
+ Serial.println("left");
+ 
+  delay(400);
+
+
+  
+  myservo.write(120);
+ }
+
+
+  else if (result.ID == 2 && result.height>130){
+      Serial.println("color verde");
+      Serial.println("-------------verde -----------");
+  
+   myservo.write (150);
+   delay(100);
+   forward();
+  delay(800);
+  stop();
+
+  myservo.write (101);
+  delay(100);
+ forward();
+ Serial.println("left");
+ 
+  delay(400);
+myservo.write(128);
+}
+else{ //negro
+  Serial.println(middleDistance);
+  pepe++;
+  digitalRead(41);
+    Serial.println(digitalRead(41));//(conectado) = horario
+
+    
+    if (digitalRead(41)){
+
+    myservo.write (100);
+    delay(500);
+    
+    myservo.write (120); //centro
+    delay(100);
+
+    }
+//sin pin antihorario    
+ else  { 
+    myservo.write (100);
+    delay(520);  
+ 
+    
+    myservo.write(128);
+    delay(500);
+    }
+}
+}
