@@ -1,4 +1,4 @@
-### Proyecto Futuros Ingenieros
+### Future engineers
 
 ### TEAM ROBOCRV
 
