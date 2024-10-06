@@ -1,5 +1,5 @@
-Video de prueba de rendimiento del carro robotico
+try of the car, here is the video.
 
-El video de prueba se subio a Youtube. Aca el enlace
+this video was uploaded to youtube.
 
-https://youtube.com/shorts/W9019Aeuvvk?feature=share
+Link: https://youtube.com/shorts/W9019Aeuvvk?feature=share
