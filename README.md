@@ -31,7 +31,7 @@ En este repositorio se pueden encontrar:
 
 - Código utilizado y sus actualizaciones (commits)
 
-- Diagrama de cableado realizada en **Wokwi** (simulador de proyectos de Arduino)
+- Diagrama de cableado realizada en **[Wokwi](https://wokwi.com/projects/411769701588109313)** (simulador de proyectos de Arduino)
 
 Este vehículo debe su movilidad a un motor DC, conectado a dos ruedas traseras para la tracción, unidas a través de un solo eje. Un eje delantero controlado por un servomotor **(micro servo mg90)**, el cual mediante palancas puede girar el eje hacia la izquierda o derecha en función de los grados que tenga. El motor DC y el servomotor trabajan con **5 voltios**. El peso total del vehículo es de **1100 gramos**.
 
