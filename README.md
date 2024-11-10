@@ -62,6 +62,8 @@ Para este robot no se utilizó impresión 3D para realizar las piezas.Se hizo re
 
 - Cámara **Huskylens (Gravity)**
 
+![](Extras/HuskyLens.png)
+
 - 2 Sensores ultrasónicos **Hc-SR04**
 ###### Sistema de tracción:
 
