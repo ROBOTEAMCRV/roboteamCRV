@@ -30,7 +30,7 @@ En este repositorio se pueden encontrar:
 
 - Instrucciones dadas al robot y lo que debería hacer (diagramas de flujo y protocódigos) 
 
-- [[https://github.com/ROBOTEAMCRV/roboteamCRV/blob/main/src|Código]] utilizado y sus actualizaciones (commits)
+- [Código](https://github.com/ROBOTEAMCRV/roboteamCRV/blob/main/src) utilizado y sus actualizaciones (commits)
 
 - Diagrama de cableado realizada en **[Wokwi](https://wokwi.com/projects/411769701588109313)** (simulador de proyectos de Arduino)
 
