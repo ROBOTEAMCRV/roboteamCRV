@@ -1,1 +1,0 @@
-Contiene tres sensores ultrasonicos, un sensor de color, un servomotor que van conectados a la placa microcontroladora Arduino Mega, dos portapilas una que alimenta directamente al controlador de motores y el otro para alimentar la placa
