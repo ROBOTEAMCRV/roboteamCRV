@@ -162,7 +162,9 @@ The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera)
 ###### Electronic parts: 
 
 - **Arduino Mega** board
+  
 ![](Extras/ArduinoMega.jpg)
+
 - DC-DC step up booster **XL6009** 5V to 32V 
 - Jumpers 
 - Network cables 
@@ -170,7 +172,9 @@ The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera)
 - 2 battery holders 
 - Terminal blocks 
 - **HuskyLens (Gravity)** camera
+
  ![](Extras/HuskyLens.png)
+ 
 - 2 **Hc-SR04** ultrasonic sensors 
 
 
