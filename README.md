@@ -30,7 +30,7 @@ En este repositorio se pueden encontrar:
 
 - Instrucciones dadas al robot y lo que debería hacer (diagramas de flujo y protocódigos) 
 
-- Código utilizado y sus actualizaciones (commits)
+- ![](src)Código utilizado y sus actualizaciones (commits)
 
 - Diagrama de cableado realizada en **[Wokwi](https://wokwi.com/projects/411769701588109313)** (simulador de proyectos de Arduino)
 
