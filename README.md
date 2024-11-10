@@ -121,6 +121,7 @@ El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pine
 ### REXBOT
 
 ### Team RoboCRV
+![](1731183167090.jpg)
 
 Our project involves the manufacture of an automated land vehicle that navigates in an environment marked by colored obstacles, taking different paths based on the characteristics and properties of said obstacles. We use a technology based on **Arduino (C++)**, which has a programming composed of ultrasonic sensors that send and receive pulses at a distance preset in the code, which, upon detecting the proximity of an object, send a signal to the **Arduino** board, which will indicate to the vehicle's movement system where to go, clockwise or counterclockwise, as preset. On the other hand, it also has a vision sensor or **Huskylens (Gravity)** camera to detect colored obstacles, and avoid them when necessary. Depending on the color, it will move to the right or left of the obstacle, as required. 
 
