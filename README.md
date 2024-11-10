@@ -4,9 +4,9 @@
 ### Team RoboCRV
 ![](Extras/1731183167090.jpg)
  
-Nuestro proyecto consiste en la fabricación de un vehículo terrestre automatizado, que navega en un entorno señalizado por obstáculos de colores, tomando diferentes caminos en función  de las características y propiedades de dichos obstáculos. Utilizamos una tecnología basada en **Arduino (C++)**, que posee una programación compuesta por sensores ultrasónicos que envían y reciben pulsos a una distancia preestablecida en el código, los cuales al detectar la proximidad de un objeto, envían una señal a la placa **Arduino**, que indicará al sistema de movimiento del vehículo hacia donde dirigirse, en sentido horario o antihorario, según lo preestablecido. Por otro lado, también cuenta con un sensor de visión o cámara  **Huskylens (Gravity)** para detectar los obstáculos de colores, y evadirlos cuando sea necesario. Dependiendo del color, se desplazará por la derecha o la izquierda del obstáculo, según lo requerido. 
+Nuestro proyecto consiste en la fabricación de un vehículo terrestre automatizado, que navega en un entorno señalizado por obstáculos de colores, tomando diferentes caminos en función  de las características y propiedades de dichos obstáculos. Utilizamos una tecnología basada en **Arduino (C++)**, que posee una programación compuesta por sensores ultrasónicos que envían y reciben pulsos a una distancia preestablecida en el código, los cuales al detectar la proximidad de un objeto, envían una señal a la placa **Arduino**, que indicará al sistema de movimiento del vehículo hacia donde dirigirse, en sentido horario o antihorario, según lo preestablecido. Por otro lado, también cuenta con un sensor de visión o cámara  **HuskyLens (Gravity)** para detectar los obstáculos de colores, y evadirlos cuando sea necesario. Dependiendo del color, se desplazará por la derecha o la izquierda del obstáculo, según lo requerido. 
   
-El código fue creado en un equipo portátil bajo sistema operativo **Windows 10 y/o GNU-Linux**. El software utilizado es **Arduino IDE versión 1.8.18**, cargado a una placa **Arduino  Mega**, a través de un cable de transmisión de datos. Esta placa está abastecida por 2 baterías de litio de 3.7 voltios.
+El código fue creado en un equipo portátil bajo sistema operativo **Windows 10 y/o GNU-Linux 5.15.0**. El software utilizado es **Arduino IDE versión 1.8.18**, cargado a una placa **Arduino  Mega**, a través de un cable de transmisión de datos. Esta placa está abastecida por 2 baterías de litio de 3.7 voltios.
 
 El dispositivo también cuenta con otro portapilas de dos baterías de litio de 3.7 voltios, que alimenta el controlador del motor y proporciona la energía necesaria para poder realizar las tareas con una velocidad óptima. 
 
@@ -60,7 +60,7 @@ Para este robot no se utilizó impresión 3D para realizar las piezas.Se hizo re
 
 - Borneras
 
-- Cámara **Huskylens (Gravity)**
+- Cámara **HuskyLens (Gravity)**
 
 ![](Extras/HuskyLens.png)
 
@@ -81,7 +81,7 @@ Para este robot no se utilizó impresión 3D para realizar las piezas.Se hizo re
 
 - Barra de acero para buje de parte delantera
 
-- Laminas de Acrilico de 5mm y 3 mm
+- Láminas de Acrílico de 5 mm y 3 mm
 
 - Espaciadores de teflón industrial
 
@@ -104,7 +104,7 @@ Este sistema de dirección cuenta con una palanca que va fija desde el brazo del
 La placa microcontroladora está alimentada mediante dos baterías **18650** 3.7 V en serie conectadas al puerto de 12 voltios corriente directa.
 ###### Sistema de Sensores:
 
-El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pines, positivo, negativo, trigger y echo, que van conectados a la placa **Arduino Mega** para dar la función de detección de paredes. Este funciona a través de ondas ultrasónicas que son emitidas y recibidas por el mismo, detectando la proximidad de un objeto, enviando una señal lógica a la placa  para ejecutar una acción. Además utiliza un sensor de visión o cámara, **Huskylens (Gravity)** para detectar los obstáculos de colores, que consta de cuatro pines positivo, negativo, Tx (transmisión de datos) y Rx (recepción de datos) que van conectados a la placa **Arduino Mega** a los pines 10 y 12(Rx y Tx).
+El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pines, positivo, negativo, trigger y echo, que van conectados a la placa **Arduino Mega** para dar la función de detección de paredes. Este funciona a través de ondas ultrasónicas que son emitidas y recibidas por el mismo, detectando la proximidad de un objeto, enviando una señal lógica a la placa  para ejecutar una acción. Además utiliza un sensor de visión o cámara, **HuskyLens (Gravity)** para detectar los obstáculos de colores, que consta de cuatro pines positivo, negativo, Tx (transmisión de datos) y Rx (recepción de datos) que van conectados a la placa **Arduino Mega** a los pines 10 y 12(Rx y Tx).
 
 ###### Detallado del archivo CAD:
 
@@ -116,7 +116,7 @@ El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pine
 
 - Las ruedas son de goma, en número de cuatro, con medidas de 6,6 cm de diámetro y 3,5 cm de grosor.
 
- - Base Superior: de 26 cm de largo y 19 cm de ancho, en la parte frontal y central de esta base, se ubica el soporte de la cámara **Huskylens**. Seguidamente se ubica un porta baterías de **2x18650** para alimentar la placa microprocesadora **Arduino Mega** que está ubicada en la parte central de esta base, seguidamente de un segundo porta baterías **4x18650**.
+ - Base Superior: de 26 cm de largo y 19 cm de ancho, en la parte frontal y central de esta base, se ubica el soporte de la cámara **HuskyLens**. Seguidamente se ubica un porta baterías de **2x18650** para alimentar la placa microprocesadora **Arduino Mega** que está ubicada en la parte central de esta base, seguidamente de un segundo porta baterías **4x18650**.
 #
 #
 #
@@ -126,9 +126,9 @@ El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pine
 
 ### Team RoboCRV
 ![](Extras/1731183167090.jpg)
-Our project involves the manufacture of an automated land vehicle that navigates in an environment marked by colored obstacles, taking different paths based on the characteristics and properties of said obstacles. We use a technology based on **Arduino (C++)**, which has a programming composed of ultrasonic sensors that send and receive pulses at a distance preset in the code, which, upon detecting the proximity of an object, send a signal to the **Arduino** board, which will indicate to the vehicle's movement system where to go, clockwise or counterclockwise, as preset. On the other hand, it also has a vision sensor or **Huskylens (Gravity)** camera to detect colored obstacles, and avoid them when necessary. Depending on the color, it will move to the right or left of the obstacle, as required. 
+Our project involves the manufacture of an automated land vehicle that navigates in an environment marked by colored obstacles, taking different paths based on the characteristics and properties of said obstacles. We use a technology based on **Arduino (C++)**, which has a programming composed of ultrasonic sensors that send and receive pulses at a distance preset in the code, which, upon detecting the proximity of an object, send a signal to the **Arduino** board, which will indicate to the vehicle's movement system where to go, clockwise or counterclockwise, as preset. On the other hand, it also has a vision sensor or **HuskyLens (Gravity)** camera to detect colored obstacles, and avoid them when necessary. Depending on the color, it will move to the right or left of the obstacle, as required. 
 
-The code was created on a laptop under **Windows 10 and/or GNU-Linux** operating system. The software used is **Arduino IDE version 1.8.18**, loaded onto an **Arduino Mega** board, through a data transmission cable. This board is supplied by 2 3.7 volt lithium batteries. 
+The code was created on a laptop under **Windows 10 and/or GNU-Linux 5.15.0** operating system. The software used is **Arduino IDE version 1.8.18**, loaded onto an **Arduino Mega** board, through a data transmission cable. This board is supplied by 2 3.7 volt lithium batteries. 
 
 The device also has another battery holder for two 3.7 volt lithium batteries, which feeds the motor controller and provides the energy needed to perform tasks at optimal speed. 
 
@@ -161,14 +161,16 @@ The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera)
 ##### Materials: 
 ###### Electronic parts: 
 
-- **Arduino Mega** board 
+- **Arduino Mega** board
+![](Extras/ArduinoMega.jpg)
 - DC-DC step up booster **XL6009** 5V to 32V 
 - Jumpers 
 - Network cables 
 - 6 3.7 volt lithium batteries 
 - 2 battery holders 
 - Terminal blocks 
-- **Huskylens (Gravity)** camera 
+- **HuskyLens (Gravity)** camera
+ ![](Extras/HuskyLens.png)
 - 2 **Hc-SR04** ultrasonic sensors 
 
 
@@ -181,7 +183,7 @@ The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera)
 - Motor controller (**L298** driver) 
 - 1 Servo (Servo motor **Mg995R or Mg996R**) 
 - Steel bar for front hub 
-- 5mm acrylic sheets and 3mm 
+- 5 mm and 3 mm acrylic sheets 
 - Industrial Teflon spacers 
 - Metal spacers with screw threads 
 - Rigid copper wire 
@@ -199,7 +201,7 @@ This vehicle owes its mobility to a DC motor, connected to two rear wheels for t
 
 ###### Sensor System: 
 
-The car has two ultrasonic sensors (**HCSR04**) consisting of 4 pins, positive, negative, trigger and echo, which are connected to the **Arduino Mega** board to provide the wall detection function. This works through ultrasonic waves that are emitted and received by it, detecting the proximity of an object, sending a logical signal to the board to execute an action. It also uses a vision sensor or camera, **Huskylens (Gravity)** to detect colored obstacles, which consists of four pins positive, negative, Tx (data transmission) and Rx (data reception) that are connected to the **Arduino Mega** board to pins 10 and 12 (Rx and Tx). 
+The car has two ultrasonic sensors (**HCSR04**) consisting of 4 pins, positive, negative, trigger and echo, which are connected to the **Arduino Mega** board to provide the wall detection function. This works through ultrasonic waves that are emitted and received by it, detecting the proximity of an object, sending a logical signal to the board to execute an action. It also uses a vision sensor or camera, **HuskyLens (Gravity)** to detect colored obstacles, which consists of four pins positive, negative, Tx (data transmission) and Rx (data reception) that are connected to the **Arduino Mega** board to pins 10 and 12 (Rx and Tx). 
 
 ###### Detailed CAD file: 
 
@@ -211,5 +213,5 @@ The car has two ultrasonic sensors (**HCSR04**) consisting of 4 pins, positive, 
 
 - The wheels are made of rubber, four in number, with measurements of 6.6 cm in diameter and 3.5 cm thick. 
 
-- Upper Base: 26 cm long and 19 cm wide, in the front and central part of this base, the support for the **Huskylens** camera is located. Next is a **2x18650** battery holder to power the **Arduino Mega** microprocessor board which is located in the central part of this base, followed by a second **4x18650** battery holder.
+- Upper Base: 26 cm long and 19 cm wide, in the front and central part of this base, the support for the **HuskyLens** camera is located. Next is a **2x18650** battery holder to power the **Arduino Mega** microprocessor board which is located in the central part of this base, followed by a second **4x18650** battery holder.
 
