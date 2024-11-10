@@ -145,7 +145,7 @@ In this repository you can find:
 - Elements that make up the robot (board, sensors, mobility components and structure) 
 - Photos of the robot (robot angles, assembly process and recorded tests) 
 - Instructions given to the robot and what it should do (flowcharts and protocodes) 
-- Code used and its updates (commits) 
+- [Code](https://github.com/ROBOTEAMCRV/roboteamCRV/blob/main/src) used and its updates (commits) 
 - Wiring diagram made in **[Wokwi](https://wokwi.com/projects/411769701588109313)** (Arduino project simulator) 
 
 This vehicle owes its mobility to a DC motor, connected to two rear wheels for traction, joined through a single axle. A front axle controlled by a servomotor **(micro servo mg90)**, which can turn the axle to the left or right using levers depending on the degrees it has. The DC motor and the servomotor work with **5 volts**. The total weight of the vehicle is **1100 grams**. 
