@@ -46,6 +46,8 @@ Para este robot no se utilizó impresión 3D para realizar las piezas.Se hizo re
 
 - Placa **Arduino Mega**
 
+![](Extras/ArduinoMega.jpg)
+
 - Elevador DC-DC step up **XL6009** 5V a 32V 
 
 - Jumpers
