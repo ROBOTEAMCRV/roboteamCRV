@@ -2,7 +2,7 @@
 ### REXBOT
 
 ### Team RoboCRV
-![](v-photos/1731183167090.jpg)
+![](Extras/1731183167090.jpg)
  
 Nuestro proyecto consiste en la fabricación de un vehículo terrestre automatizado, que navega en un entorno señalizado por obstáculos de colores, tomando diferentes caminos en función  de las características y propiedades de dichos obstáculos. Utilizamos una tecnología basada en **Arduino (C++)**, que posee una programación compuesta por sensores ultrasónicos que envían y reciben pulsos a una distancia preestablecida en el código, los cuales al detectar la proximidad de un objeto, envían una señal a la placa **Arduino**, que indicará al sistema de movimiento del vehículo hacia donde dirigirse, en sentido horario o antihorario, según lo preestablecido. Por otro lado, también cuenta con un sensor de visión o cámara  **Huskylens (Gravity)** para detectar los obstáculos de colores, y evadirlos cuando sea necesario. Dependiendo del color, se desplazará por la derecha o la izquierda del obstáculo, según lo requerido. 
   
@@ -121,8 +121,7 @@ El carro cuenta con dos sensores ultrasónicos (**HCSR04**) que consta de 4 pine
 ### REXBOT
 
 ### Team RoboCRV
-![](v-photos/1731183167090.jpg)
-
+![](Extras/1731183167090.jpg)
 Our project involves the manufacture of an automated land vehicle that navigates in an environment marked by colored obstacles, taking different paths based on the characteristics and properties of said obstacles. We use a technology based on **Arduino (C++)**, which has a programming composed of ultrasonic sensors that send and receive pulses at a distance preset in the code, which, upon detecting the proximity of an object, send a signal to the **Arduino** board, which will indicate to the vehicle's movement system where to go, clockwise or counterclockwise, as preset. On the other hand, it also has a vision sensor or **Huskylens (Gravity)** camera to detect colored obstacles, and avoid them when necessary. Depending on the color, it will move to the right or left of the obstacle, as required. 
 
 The code was created on a laptop under **Windows 10 and/or GNU-Linux** operating system. The software used is **Arduino IDE version 1.8.18**, loaded onto an **Arduino Mega** board, through a data transmission cable. This board is supplied by 2 3.7 volt lithium batteries. 
