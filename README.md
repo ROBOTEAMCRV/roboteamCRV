@@ -2,6 +2,7 @@
 ### REXBOT
 
 ### Team RoboCRV
+¡(1731183167090.jpg)
  
 Nuestro proyecto consiste en la fabricación de un vehículo terrestre automatizado, que navega en un entorno señalizado por obstáculos de colores, tomando diferentes caminos en función  de las características y propiedades de dichos obstáculos. Utilizamos una tecnología basada en **Arduino (C++)**, que posee una programación compuesta por sensores ultrasónicos que envían y reciben pulsos a una distancia preestablecida en el código, los cuales al detectar la proximidad de un objeto, envían una señal a la placa **Arduino**, que indicará al sistema de movimiento del vehículo hacia donde dirigirse, en sentido horario o antihorario, según lo preestablecido. Por otro lado, también cuenta con un sensor de visión o cámara  **Huskylens (Gravity)** para detectar los obstáculos de colores, y evadirlos cuando sea necesario. Dependiendo del color, se desplazará por la derecha o la izquierda del obstáculo, según lo requerido. 
   
