@@ -85,3 +85,93 @@ En el chasis tenemos dos espacios simétricos a cada lado, para colocar las rued
 Las ruedas son de goma, en número de cuatro, con medidas de 6,6 cm de diámetro y 3,5 cm de grosor.
 
 Base Superior: de 26 cm de largo y 19 cm de ancho, en la parte frontal y central de esta base, se ubica el soporte de la cámara Huskylens. Seguidamente se ubica un porta baterías de 2x**18650** para alimentar la placa microprocesadora **Arduino Mega** que está ubicada en la parte central de esta base, seguidamente de un segundo porta baterías 4x**18650**.
+
+___
+___
+
+# Documentation
+___
+
+## Materials:
+
+### Electronic parts:
+
+**Arduino Mega** board
+
+DC-DC step up booster **XL6009** 5V to 32V
+
+Jumpers
+
+Network cables
+
+6 3.7 volt lithium batteries
+
+2 battery holders
+
+Terminal blocks
+
+**HuskyLens (Gravity)** camera
+
+2 **Hc-SR04** ultrasonic sensors
+
+### Traction system:
+
+DC motor
+
+Gearbox for DC motor
+
+Rubber wheel bushings
+
+4 rubber wheels
+
+Motor controller (driver **L298**)
+
+1 Servo (Servo motor **Mg995R** or **Mg996R**)
+
+Steel bar for front bushing
+
+5 mm and 3 mm acrylic sheets
+
+Industrial Teflon spacers
+
+Spacers Metal with screw thread
+
+Rigid copper cable
+
+Nuts and screws
+
+___
+## Mobility management:
+
+This vehicle owes its mobility to a DC motor, connected to two rear wheels for traction, joined through a single axle, and two front wheels connected to the steering system.
+
+Steering system: front steering through a servo motor (servo motor **mg995r**) consisting of three pins, positive, negative and data that goes to the **Arduino Mega** board to pin 3, to control its turns by degrees, with a lever system that each time the servo turns between 0 and 180 degrees, left or right, pushes the main axis to the left or right respectively.
+
+This steering system has a lever that is fixed from the arm of the servo motor to the axle of one of the wheels, which connects to the other. We use rubber wheels so that it has greater adherence to the track.
+___
+
+## Power management:
+
+Rear drive system electrical connection: consisting of two 3.7 volt batteries connected in series to give 7.4 V, connected in turn to the voltage booster (**XL6009**) to give 10 V sustained to the **L298** driver, at its 12 volt input, to provide greater efficiency to the DC motor. This is connected from its pins n1 and n2 to the **Arduino Mega** board on its pins 8 and 7, to change the energy polarity that defines the rotation of the wheels, whether forward or backward. From the **L298** they are connected to the 5V DC motor outputs.
+
+The microcontroller board is powered by two **18650** 3.7 V batteries in series connected to the 12 volt direct current port.
+
+___
+
+## Sensor System:
+
+The car has two ultrasonic sensors (**HCSR04**) consisting of 4 pins, positive, negative, trigger and echo, which are connected to the **Arduino Mega** board to provide the wall detection function. This works through ultrasonic waves that are emitted and received by it, detecting the proximity of an object, sending a logical signal to the board to execute an action. It also uses a vision sensor or camera, **HuskyLens (Gravity)** to detect colored obstacles, which consists of four pins positive, negative, Tx (data transmission) and Rx (data reception) that are connected to the **Arduino Mega** board to pins 10 and 12 (Rx and Tx).
+
+___
+
+## Detailed CAD file:
+
+Rexbot Bottom Base (chassis): It has an oval front part in the shape of a bumper to avoid impacts during testing, which affect the ultrasonic sensor that is located in the center of the front area.
+
+The chassis is made up of a 5 mm acrylic piece, a material that allows us the hardness to guarantee torsional rigidity and anchoring of parts, and resilience at the time of impacts. Its dimensions are 26 cm long and 19 cm wide.
+
+In the chassis we have two symmetrical spaces on each side, to place the wheels, with enough capacity to provide the necessary field of movement within it. In the middle, two parallel semi-rounded tabs, which are used to place the base of the wheels and the steering system, which goes in the center of these tabs, then in the central part the motor controller (L298N) will be placed. On the back of the chassis there will be a base to fix the DC motor reduction box and two supports for the rear drive axle, on both sides there are the spaces where the rear wheels are located.
+
+The wheels are made of rubber, four in number, with measurements of 6.6 cm in diameter and 3.5 cm thick.
+
+Upper Base: 26 cm long and 19 cm wide, in the front and central part of this base, the support for the Huskylens camera is located. Next is a 2x**18650** battery holder to power the **Arduino Mega** microprocessor board which is located in the central part of this base, followed by a second 4x**18650** battery holder.
