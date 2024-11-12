@@ -94,7 +94,7 @@ Para este robot no se utilizó impresión 3D para realizar las piezas.Se hizo re
 
 Este vehículo debe su movilidad a un motor DC, conectado a dos ruedas traseras para la tracción, unidas a través de un solo eje, y dos ruedas delanteras conectadas al sistema de dirección.
 
-**Sistema de dirección:** dirección delantera a través de un servomotor (servomotor **mg995r**) que consta de tres pines, positivo, negativo y datos que va a la placa **Arduino Mega** al pin 3, para controlar sus giros mediante grados, con un sistema de palanca que cada vez que gira el servo entre 0 y 180 grados, a la izquierda o derecha, empuja el eje principal hacia la izquierda o hacia la derecha respectivamente.  
+**Sistema de dirección:** dirección delantera a través de un servomotor (**Mg995r**) que consta de tres pines, positivo, negativo y datos que va a la placa **Arduino Mega** al pin 3, para controlar sus giros mediante grados, con un sistema de palanca que cada vez que gira el servo entre 0 y 180 grados, a la izquierda o derecha, empuja el eje principal hacia la izquierda o hacia la derecha respectivamente.  
 
 Este sistema de dirección cuenta con una palanca que va fija desde el brazo del servomotor hasta el eje de una de las ruedas, que conecta con la otra. Utilizamos ruedas de goma para que tenga mayor adherencia a la pista.
 ###### Gestión de energía:
@@ -197,7 +197,7 @@ The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera)
 
 This vehicle owes its mobility to a DC motor, connected to two rear wheels for traction, joined through a single axle, and two front wheels connected to the steering system. 
 
-**Steering system:** Front steering through a servo motor (servo motor **mg995r**) consisting of three pins, positive, negative and data that goes to the **Arduino Mega** board to pin 3, to control its turns by degrees, with a lever system that every time the servo turns between 0 and 180 degrees, left or right, pushes the main axis to the left or right respectively. This steering system has a lever that is fixed from the arm of the servo motor to the axle of one of the wheels, which connects to the other. We use rubber wheels to give it greater grip on the track. 
+**Steering system:** Front steering through a servo motor (**Mg995r**) consisting of three pins, positive, negative and data that goes to the **Arduino Mega** board to pin 3, to control its turns by degrees, with a lever system that every time the servo turns between 0 and 180 degrees, left or right, pushes the main axis to the left or right respectively. This steering system has a lever that is fixed from the arm of the servo motor to the axle of one of the wheels, which connects to the other. We use rubber wheels to give it greater grip on the track. 
 
 ###### Power management: 
 
