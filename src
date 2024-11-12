@@ -18,13 +18,13 @@ void printResult(HUSKYLENSResult result);
 #define IN1 8  //driver Pins
 #define IN2 7
 
-int carSpeed = 80;
+int carSpeed = 55;
 
 #define TRIGGER_PIN  45  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN     44  // Arduino pin tied to echo pin on the ultrasonic sensor.
 
-#define TRIGGER_PIN2  8  // Arduino pin tied to trigger pin on the ultrasonic sensor.
-#define ECHO_PIN2 9  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define TRIGGER_PIN2  25  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN2 24  // Arduino pin tied to echo pin on the ultrasonic sensor.
 
 #define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
@@ -41,7 +41,8 @@ delay(50);                     // Wait 50ms between pings (about 20 pings/sec). 
   Serial.println("cm");
 }
 
-
+int tilin = 0;
+int grasa = 0;
 
 
 void forward(){
@@ -54,7 +55,7 @@ void forward(){
 }
 
 void back(){
-  analogWrite(ENA,carSpeed);
+ // analogWrite(ENA,carSpeed);
   digitalWrite(IN1,LOW);
   digitalWrite(IN2,HIGH);
   Serial.print("Back");}
@@ -104,22 +105,26 @@ if (pepe==0){ //beginning
 
    myservo.write (54);
   delay(1000);
-  myservo.write (23); //centro
+  myservo.write (25); //centro
     delay(700);
   pepe++; //to do just one time
+  analogWrite (ENA, 80);
 
 }
 
 Serial.println(pepe);
 
 middleDistance = sonar.ping_cm(); //ultrasonic is on
+leftDistance = lsonar.ping_cm();
+
+
 
 forward();
 Serial.println(middleDistance);
-  if (middleDistance <= 10 & middleDistance > 1){
+  if (middleDistance <= 14 & middleDistance > 1){
     
   back();
- 
+
   wall();
 }
   //pepe++;
@@ -162,8 +167,9 @@ void printResult(HUSKYLENSResult result){
     
     if (result.ID == 1 && result.height>70) {
         Serial.println("-------------red -----------");//avoid for right
+        analogWrite(ENA, 85);
         back();
-        delay(500);
+        delay(1000);
       
         myservo.write (8);
         delay(100);
@@ -177,7 +183,7 @@ void printResult(HUSKYLENSResult result){
         forward();
         Serial.println("left");
        
-        delay(600);
+        delay(620);
 
       /*  myservo.write (118);
         delay(100);
@@ -194,7 +200,7 @@ void printResult(HUSKYLENSResult result){
         delay(800);
       */
         
-       myservo.write (25);
+       myservo.write (26);
         Serial.println("center");
 
   }
@@ -204,16 +210,16 @@ void printResult(HUSKYLENSResult result){
 
   else if (result.ID == 2 && result.height>70){
     Serial.println("-------------verde -----------"); //avoid for left
-    analogWrite (ENA, 100);
+    analogWrite (ENA, 80);
     back();
-    delay(500);
+    delay(1000);
 
     myservo.write (55);
     delay(50);
     forward();
     Serial.println("left");
    
-    delay(1400);
+    delay(1200);
 
 
     myservo.write (8);
@@ -221,7 +227,7 @@ void printResult(HUSKYLENSResult result){
     forward();
     Serial.println("right");
  
-    delay(801);
+    delay(701);
 /*
     myservo.write (78);
     delay(100);
@@ -240,7 +246,7 @@ void printResult(HUSKYLENSResult result){
     delay(800);
 
  */ 
-    myservo.write(36);
+    myservo.write(37);
     delay(100);
 
   }
@@ -273,46 +279,62 @@ void wall(){
  
 analogWrite(ENA, 80);
   Serial.println(middleDistance);
+forward();
   pepe++;
+  if (leftDistance <= 80 && leftDistance > 1 && grasa == 0){
+    tilin++;
+   }
+   else if (tilin == 0){
+    grasa++;
+   }
+  
+  Serial.println(leftDistance); //  if leftdistance > 50 = clockwise       
+  //if (leftDistance <= 80 && leftDistance > 1){
+    //if (digitalRead(41)){
   back();
   
-  digitalRead(41);
-  Serial.println(digitalRead(41));//(conectado) = horario
-
-  delay(500);
+  delay(300);
     
-  if (digitalRead(41)){
+  if (tilin > 0 && grasa == 0){ //couterclockwise   
 
+     myservo.write (52);
+    delay(1200); 
+
+    forward();
+  
+    myservo.write (8);
+    delay(1350);    
+    //delay(651); 
+    
+    myservo.write(33);
+    delay(100);
+
+    analogWrite(ENA, 70);
+    }
+    
+//clockwise   
+else if (grasa > 0){
+    
     myservo.write (10);
     delay(1000);  
 
     forward();
 
-     myservo.write (52);
-    delay(1200);
+     myservo.write (54);
+    delay(1250);
+
+    analogWrite(ENA, 70);
  
-    myservo.write (24); //centro
+    myservo.write (30); //centro
     delay(100);
 
-    back();
-    delay(700);
-    }
-//sin pin antihorario    
- else  { 
-  
-    myservo.write (52);
-    delay(700);  
-
-    forward();
-  
-    myservo.write (10);
-    delay(900);  
-    //delay(651); 
+   }
     
-    myservo.write(36);
-    delay(100);
-
-     back();
-    delay(700);
-    }
+      back();
+    delay(1600);
+    
+   
+     analogWrite(ENA, 80);
+    forward();
+    delay(50);
 }
