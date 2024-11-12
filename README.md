@@ -34,7 +34,7 @@ En este repositorio se pueden encontrar:
 
 - Diagrama de cableado realizada en **[Wokwi](https://wokwi.com/projects/411769701588109313)** (simulador de proyectos de Arduino)
 
-Este vehículo debe su movilidad a un motor DC, conectado a dos ruedas traseras para la tracción, unidas a través de un solo eje. Un eje delantero controlado por un servomotor **(servo mg995R)**, el cual mediante palancas puede girar el eje hacia la izquierda o derecha en función de los grados que tenga. El motor DC y el servomotor trabajan con **5 voltios**. El peso total del vehículo es de **1100 gramos**.
+Este vehículo debe su movilidad a un motor DC, conectado a dos ruedas traseras para la tracción, unidas a través de un solo eje. Un eje delantero controlado por un servomotor **(Mg995R)**, el cual mediante palancas puede girar el eje hacia la izquierda o derecha en función de los grados que tenga. El motor DC y el servomotor trabajan con **5 voltios**. El peso total del vehículo es de **1100 gramos**.
 
 El **sensor ultrasónico** trabaja con **5 voltios**, el **sensor visual** (cámara) con **3,3 voltios**, la placa **Arduino Mega**, por otro lado utiliza **dos baterías de 3.7 voltios** y el **servomotor 5V**.
 
@@ -152,7 +152,7 @@ In this repository you can find:
 - **[Code](https://github.com/ROBOTEAMCRV/roboteamCRV/blob/main/src)** used and its updates (commits) 
 - Wiring diagram made in **[Wokwi](https://wokwi.com/projects/411769701588109313)** (Arduino project simulator) 
 
-This vehicle owes its mobility to a DC motor, connected to two rear wheels for traction, joined through a single axle. A front axle controlled by a servomotor **(servo mg995R)**, which can turn the axle to the left or right using levers depending on the degrees it has. The DC motor and the servomotor work with **5 volts**. The total weight of the vehicle is **1100 grams**. 
+This vehicle owes its mobility to a DC motor, connected to two rear wheels for traction, joined through a single axle. A front axle controlled by a servomotor **(Mg995R)**, which can turn the axle to the left or right using levers depending on the degrees it has. The DC motor and the servomotor work with **5 volts**. The total weight of the vehicle is **1100 grams**. 
 
 The **ultrasonic sensor** works with **5 volts**, the **visual sensor** (camera) with **3.3 volts**, the **Arduino Mega** board, on the other hand, uses **two 3.7 volt batteries** and the **5V servo motor**. 
 
