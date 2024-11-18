@@ -10,8 +10,8 @@ int ID1 = 1; //first learned results. colored result on HUSKYLENS screen
 int ID2 = 2; //second learned results. colored result on HUSKYLENS screen
 
 HUSKYLENS huskylens;
-SoftwareSerial mySerial(10, 12); // RX, TX
-//HUSKYLENS green line >> Pin 10; blue line >> Pin 12
+SoftwareSerial mySerial(12, 13); // RX, TX
+//HUSKYLENS green line >> Pin 12; blue line >> Pin 13
 void printResult(HUSKYLENSResult result);
 
 #define ENA 5
@@ -20,8 +20,8 @@ void printResult(HUSKYLENSResult result);
 
 int carSpeed = 55;
 
-#define TRIGGER_PIN  45  // Arduino pin tied to trigger pin on the ultrasonic sensor.
-#define ECHO_PIN     44  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define TRIGGER_PIN  10  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     9  // Arduino pin tied to echo pin on the ultrasonic sensor.
 
 #define TRIGGER_PIN2  25  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN2 24  // Arduino pin tied to echo pin on the ultrasonic sensor.
@@ -105,10 +105,11 @@ if (pepe==0){ //beginning
 
    myservo.write (54);
   delay(1000);
-  myservo.write (25); //centro
+  myservo.write (27); //centro
+  //myservo.write (28); //centro
     delay(700);
   pepe++; //to do just one time
-  analogWrite (ENA, 80);
+  analogWrite (ENA, 70);
 
 }
 
@@ -121,7 +122,7 @@ leftDistance = lsonar.ping_cm();
 
 forward();
 Serial.println(middleDistance);
-  if (middleDistance <= 14 & middleDistance > 1){
+  if (middleDistance <= 15 & middleDistance > 1){
     
   back();
 
@@ -167,41 +168,43 @@ void printResult(HUSKYLENSResult result){
     
     if (result.ID == 1 && result.height>70) {
         Serial.println("-------------red -----------");//avoid for right
-        analogWrite(ENA, 85);
+        analogWrite(ENA, 35);
+         delay(50);
+        stop();
+        delay(100);
+        analogWrite(ENA, 65);
         back();
         delay(1000);
+
+
+         analogWrite(ENA, 35);
+         delay(50);
+         stop();
+         delay(100);
+        analogWrite(ENA, 85);
       
-        myservo.write (8);
+        myservo.write (7);
         delay(100);
         forward();
         Serial.println("right");
        
-        delay(1200);
+        delay(1050);
       
-        myservo.write (55);
+        //myservo.write (52);
+        myservo.write (57);
         delay(100);
         forward();
         Serial.println("left");
        
         delay(620);
 
-      /*  myservo.write (118);
-        delay(100);
-        forward();
-        Serial.println("left");
-       
-        delay(800);
-      
-      myservo.write (80);
-        delay(100);
-        forward();
-        Serial.println("right");
-       
-        delay(800);
-      */
-        
-       myservo.write (26);
+        analogWrite(ENA, 35);
+
+       myservo.write (28);
         Serial.println("center");
+
+        
+        delay(50);
 
   }
 
@@ -210,45 +213,45 @@ void printResult(HUSKYLENSResult result){
 
   else if (result.ID == 2 && result.height>70){
     Serial.println("-------------verde -----------"); //avoid for left
-    analogWrite (ENA, 80);
-    back();
-    delay(1000);
+      analogWrite(ENA, 35);
+      delay(50);
+        stop();
+        delay(100);
+        analogWrite(ENA, 65);
+        back();
+        delay(1000);
 
-    myservo.write (55);
+
+        analogWrite(ENA, 35);
+         delay(50);
+         stop();
+         delay(100);
+        analogWrite(ENA, 78);
+
+    myservo.write (59);
     delay(50);
     forward();
     Serial.println("left");
    
-    delay(1200);
+    delay(1100);
 
 
-    myservo.write (8);
-    delay(100);
+   myservo.write (7);
     forward();
     Serial.println("right");
  
-    delay(701);
-/*
-    myservo.write (78);
-    delay(100);
-    forward();
-    Serial.println("right");
- 
-    delay(501);
+    delay(801);
 
-
-
-    myservo.write (120);
-    delay(50);
-    forward();
-    Serial.println("left");
+    myservo.write(35);
+   // myservo.write(34);
+     Serial.println("center");
    
-    delay(800);
 
- */ 
-    myservo.write(37);
-    delay(100);
+    analogWrite(ENA, 30);
+        delay(30);
 
+        
+    myservo.write(35);
   }
 
   else if (result.ID == 3 && result.height>70 && pepe > 2){
@@ -277,11 +280,11 @@ void printResult(HUSKYLENSResult result){
 
 void wall(){
  
-analogWrite(ENA, 80);
+analogWrite(ENA, 70);
   Serial.println(middleDistance);
 forward();
   pepe++;
-  if (leftDistance <= 80 && leftDistance > 1 && grasa == 0){
+  if (leftDistance <= 50 && leftDistance > 1 && grasa == 0){
     tilin++;
    }
    else if (tilin == 0){
@@ -293,48 +296,85 @@ forward();
     //if (digitalRead(41)){
   back();
   
-  delay(300);
+  delay(100);
+
+  analogWrite(ENA, 90);
     
-  if (tilin > 0 && grasa == 0){ //couterclockwise   
+  if (tilin > 0 && grasa == 0){ //clockwise   
+ analogWrite(ENA, 85);
 
-     myservo.write (52);
-    delay(1200); 
-
-    forward();
+  back();
+  delay(100);
   
-    myservo.write (8);
-    delay(1350);    
-    //delay(651); 
+   
     
-    myservo.write(33);
-    delay(100);
+    myservo.write (61);
+    delay(1301);  
 
-    analogWrite(ENA, 70);
-    }
-    
-//clockwise   
-else if (grasa > 0){
-    
-    myservo.write (10);
-    delay(1000);  
+    analogWrite(ENA, 80);
+    delay(50);
+ 
+
 
     forward();
 
-     myservo.write (54);
+     myservo.write (7);
     delay(1250);
 
+    analogWrite(ENA, 65);
+    delay(50);
+ 
+    myservo.write (35); //centro
+    
+    
+   analogWrite(ENA, 70);
+    delay(50);
+      back();
+    delay(1400);
+    
+    myservo.write(33);
+    
+
+    }
+    
+//couterclockwise   
+else if (grasa > 0){
+  analogWrite(ENA, 85);
+
+  back();
+  delay(300);
+  
+    
+    myservo.write (7);
+    delay(901);  
+
     analogWrite(ENA, 70);
+    delay(50);
+ 
+
+    forward();
+
+     myservo.write (59);
+    delay(1830);
+
+    analogWrite(ENA, 63);
+    delay(70);
  
     myservo.write (30); //centro
-    delay(100);
+    
+    
+   analogWrite(ENA, 70);
+    delay(50);
+      back();
+    delay(1800);
+    
+    myservo.write(27);
+    
 
    }
     
-      back();
-    delay(1600);
-    
    
-     analogWrite(ENA, 80);
+     analogWrite(ENA, 65);
     forward();
     delay(50);
 }
